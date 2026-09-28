@@ -1,0 +1,16 @@
+# IntelliJ
+.idea/
+*.iml
+
+# Maven
+target/
+
+# Fotos enviadas pelos usuários
+uploads/
+
+# Arquivos de ambiente
+.env
+
+# Sistema operacional
+.DS_Store
+Thumbs.db

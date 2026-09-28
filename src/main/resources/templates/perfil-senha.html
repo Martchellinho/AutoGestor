@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Alterar Senha - AutoGestor</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+<div class="main">
+
+    <div class="header">
+
+        <h1>Alterar Senha</h1>
+
+        <p>
+            Atualize a senha da sua conta.
+        </p>
+
+    </div>
+
+    <div class="form-container">
+
+        <div class="erro"
+             th:if="${erro}"
+             th:text="${erro}">
+        </div>
+
+        <div class="sucesso"
+             th:if="${sucesso}"
+             th:text="${sucesso}">
+        </div>
+
+        <form th:action="@{/perfil/senha}"
+              method="post">
+
+            <label>Senha atual</label>
+
+            <input type="password"
+                   name="senhaAtual"
+                   required>
+
+            <label>Nova senha</label>
+
+            <input type="password"
+                   name="novaSenha"
+                   required>
+
+            <label>Confirmar nova senha</label>
+
+            <input type="password"
+                   name="confirmarSenha"
+                   required>
+
+            <br><br>
+
+            <button class="btn"
+                    type="submit">
+                Alterar Senha
+            </button>
+
+            <a class="btn-voltar"
+               th:href="@{/perfil}">
+                Cancelar
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

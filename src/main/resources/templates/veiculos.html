@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Veículos - AutoGestor</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+<div class="main">
+
+    <div class="header">
+
+        <h1>Veículos</h1>
+
+        <p>
+            Gerencie os veículos cadastrados no AutoGestor.
+        </p>
+
+    </div>
+
+    <div class="erro"
+         th:if="${erro}"
+         th:text="${erro}">
+    </div>
+
+    <a class="btn"
+       th:href="@{/veiculos/novo}">
+        + Novo Veículo
+    </a>
+
+    <table>
+
+        <thead>
+
+        <tr>
+            <th>ID</th>
+            <th>Placa</th>
+            <th>Modelo</th>
+            <th>Cor</th>
+            <th>Cliente</th>
+            <th>Ações</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr th:each="veiculo : ${veiculos}">
+
+            <td th:text="${veiculo.id}"></td>
+
+            <td th:text="${veiculo.placa}"></td>
+
+            <td th:text="${veiculo.modelo}"></td>
+
+            <td th:text="${veiculo.cor}"></td>
+
+            <td th:text="${veiculo.cliente.nome}"></td>
+
+            <td>
+
+                <a class="btn-editar"
+                   th:href="@{/veiculos/editar/{id}(id=${veiculo.id})}">
+                    Editar
+                </a>
+
+                <form th:action="@{/veiculos/excluir/{id}(id=${veiculo.id})}"
+                      method="post"
+                      style="display: inline;"
+                      onsubmit="return confirm('Deseja realmente excluir este veículo?')">
+
+                    <button class="btn-excluir"
+                            type="submit">
+                        Excluir
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

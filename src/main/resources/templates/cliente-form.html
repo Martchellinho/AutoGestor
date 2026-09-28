@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cliente - AutoGestor</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+<!-- CONTEÚDO PRINCIPAL -->
+<div class="main">
+
+    <div class="header">
+
+        <h1 th:text="${cliente.id == null ? 'Novo Cliente' : 'Editar Cliente'}">
+            Cliente
+        </h1>
+
+        <p>
+            Preencha os dados do cliente.
+        </p>
+
+    </div>
+
+    <div class="form-container">
+
+        <form th:action="@{/clientes/salvar}"
+              th:object="${cliente}"
+              method="post">
+
+            <input type="hidden"
+                   th:field="*{id}">
+
+            <label>Nome</label>
+
+            <input type="text"
+                   th:field="*{nome}"
+                   placeholder="Nome completo"
+                   required>
+
+            <label>Telefone</label>
+
+            <input type="text"
+                   th:field="*{telefone}"
+                   placeholder="(19) 99999-9999">
+
+            <br><br>
+
+            <button class="btn"
+                    type="submit">
+                Salvar Cliente
+            </button>
+
+            <a class="btn-voltar"
+               th:href="@{/clientes}">
+                Cancelar
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

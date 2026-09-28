@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes - AutoGestor</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+<!-- CONTEÚDO -->
+<div class="main">
+
+    <div class="header">
+
+        <h1>Clientes</h1>
+
+        <p>
+            Gerencie os clientes cadastrados no AutoGestor.
+        </p>
+
+    </div>
+
+    <!-- ERRO -->
+    <div class="erro"
+         th:if="${erro}"
+         th:text="${erro}">
+    </div>
+
+    <!-- BOTÃO NOVO CLIENTE -->
+    <a class="btn"
+       th:href="@{/clientes/novo}">
+        + Novo Cliente
+    </a>
+
+    <!-- TABELA -->
+    <table>
+
+        <thead>
+
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Ações</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr th:each="cliente : ${clientes}">
+
+            <td th:text="${cliente.id}"></td>
+
+            <td th:text="${cliente.nome}"></td>
+
+            <td th:text="${cliente.telefone}"></td>
+
+            <td>
+
+                <a class="btn-editar"
+                   th:href="@{/clientes/editar/{id}(id=${cliente.id})}">
+                    Editar
+                </a>
+                <form th:action="@{/clientes/excluir/{id}(id=${cliente.id})}"
+                      method="post"
+                      style="display: inline;"
+                      onsubmit="return confirm('Deseja realmente excluir este cliente?')">
+
+                    <button class="btn-excluir"
+                            type="submit">
+                        Excluir
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

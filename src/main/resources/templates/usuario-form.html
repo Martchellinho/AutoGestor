@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Usuário - AutoGestor</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+<div class="main">
+
+    <div class="header">
+
+        <h1 th:text="${usuario.id == null ? 'Novo Usuário' : 'Editar Usuário'}">
+            Usuário
+        </h1>
+
+        <p>
+            Preencha os dados da conta.
+        </p>
+
+    </div>
+
+    <div class="form-container">
+
+        <div class="erro"
+             th:if="${erro}"
+             th:text="${erro}">
+        </div>
+
+        <form th:action="@{/usuarios/salvar}"
+              th:object="${usuario}"
+              method="post">
+
+            <input type="hidden"
+                   th:field="*{id}">
+
+            <label>Nome</label>
+
+            <input type="text"
+                   th:field="*{nome}"
+                   placeholder="Nome completo"
+                   required>
+
+
+            <label>Nome de usuário</label>
+
+            <input type="text"
+                   th:field="*{username}"
+                   placeholder="Ex: joao"
+                   required>
+
+
+            <label>Tipo da conta</label>
+
+            <select th:field="*{perfil}"
+                    required>
+
+                <option value="">
+                    Selecione
+                </option>
+
+                <option value="USUARIO">
+                    Funcionário
+                </option>
+
+                <option value="ADMIN">
+                    Administrador
+                </option>
+
+            </select>
+
+
+            <label th:text="${usuario.id == null ? 'Senha' : 'Nova senha (opcional)'}">
+                Senha
+            </label>
+
+            <input type="password"
+                   name="novaSenha"
+                   placeholder="Digite a senha"
+                   th:required="${usuario.id == null}"
+                   autocomplete="new-password">
+
+
+            <br><br>
+
+            <button class="btn"
+                    type="submit">
+                Salvar Usuário
+            </button>
+
+            <a class="btn-voltar"
+               th:href="@{/usuarios}">
+                Cancelar
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

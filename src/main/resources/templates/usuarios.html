@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Usuários - AutoGestor</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+<div class="main">
+
+    <div class="header">
+
+        <h1>Usuários</h1>
+
+        <p>
+            Gerencie as contas que possuem acesso ao AutoGestor.
+        </p>
+
+    </div>
+
+    <!-- MENSAGEM DE ERRO -->
+    <div class="erro"
+         th:if="${erro}"
+         th:text="${erro}">
+    </div>
+
+    <!-- NOVO USUÁRIO -->
+    <a class="btn"
+       th:href="@{/usuarios/novo}">
+        + Novo Usuário
+    </a>
+
+    <!-- TABELA -->
+    <table>
+
+        <thead>
+
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Usuário</th>
+            <th>Perfil</th>
+            <th>Ações</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr th:each="usuario : ${usuarios}">
+
+            <td th:text="${usuario.id}"></td>
+
+            <td th:text="${usuario.nome}"></td>
+
+            <td th:text="${usuario.username}"></td>
+
+            <td th:text="${usuario.perfil == 'ADMIN' ? 'Administrador' : 'Funcionário'}"></td>
+
+            <td>
+
+                <a class="btn-editar"
+                   th:href="@{/usuarios/editar/{id}(id=${usuario.id})}">
+                    Editar
+                </a>
+
+                <form th:action="@{/usuarios/excluir/{id}(id=${usuario.id})}"
+                      method="post"
+                      style="display: inline;"
+                      onsubmit="return confirm('Deseja realmente excluir este usuário?')">
+
+                    <button class="btn-excluir"
+                            type="submit">
+                        Excluir
+                    </button>
+
+                </form>
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

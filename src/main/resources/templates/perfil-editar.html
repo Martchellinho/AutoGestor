@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Perfil - AutoGestor</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+<div class="main">
+
+    <div class="header">
+        <h1>Editar Perfil</h1>
+        <p>Altere os dados da sua conta.</p>
+    </div>
+
+    <div class="form-container">
+
+        <div class="erro"
+             th:if="${erro}"
+             th:text="${erro}">
+        </div>
+
+        <form th:action="@{/perfil/salvar}"
+              method="post">
+
+            <label>Nome</label>
+
+            <input type="text"
+                   name="nome"
+                   th:value="${usuario.nome}"
+                   required>
+
+            <label>Nome de usuário</label>
+
+            <input type="text"
+                   name="username"
+                   th:value="${usuario.username}"
+                   required>
+
+            <br><br>
+
+            <button class="btn"
+                    type="submit">
+                Salvar Alterações
+            </button>
+
+            <a class="btn-voltar"
+               th:href="@{/perfil}">
+                Cancelar
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

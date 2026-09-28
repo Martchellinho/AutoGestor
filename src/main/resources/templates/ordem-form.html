@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ordem de Serviço - AutoGestor</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+<div class="main">
+
+    <div class="header">
+
+        <h1 th:text="${ordem.id == null ? 'Nova Ordem de Serviço' : 'Editar Ordem de Serviço'}">
+            Ordem de Serviço
+        </h1>
+
+        <p>
+            Preencha os dados da ordem de serviço.
+        </p>
+
+    </div>
+
+    <div class="form-container">
+
+        <form th:action="@{/ordens/salvar}"
+              th:object="${ordem}"
+              method="post">
+
+            <input type="hidden"
+                   th:field="*{id}">
+
+            <label>Veículo</label>
+
+            <select name="veiculoId"
+                    required>
+
+                <option value="">
+                    Selecione o veículo
+                </option>
+
+                <option th:each="veiculo : ${veiculos}"
+                        th:value="${veiculo.id}"
+                        th:text="${veiculo.modelo + ' - ' + veiculo.placa + ' - ' + veiculo.cliente.nome}"
+                        th:selected="${ordem.veiculo != null and ordem.veiculo.id == veiculo.id}">
+                </option>
+
+            </select>
+
+            <label>Serviço</label>
+
+            <select name="servicoId"
+                    required>
+
+                <option value="">
+                    Selecione o serviço
+                </option>
+
+                <option th:each="servico : ${servicos}"
+                        th:value="${servico.id}"
+                        th:text="${servico.descricao + ' - R$ ' + servico.valor}"
+                        th:selected="${ordem.servico != null and ordem.servico.id == servico.id}">
+                </option>
+
+            </select>
+
+            <label>Data de Abertura</label>
+
+            <input type="date"
+                   th:field="*{dataAbertura}"
+                   required>
+
+            <label>Status</label>
+
+            <select th:field="*{status}"
+                    required>
+
+                <option value="Aguardando">
+                    Aguardando
+                </option>
+
+                <option value="Em andamento">
+                    Em andamento
+                </option>
+
+                <option value="Concluído">
+                    Concluído
+                </option>
+
+            </select>
+
+            <label>Valor Total</label>
+
+            <input type="number"
+                   step="0.01"
+                   min="0"
+                   th:field="*{valorTotal}"
+                   placeholder="Ex: 500.00">
+
+            <br><br>
+
+            <button class="btn"
+                    type="submit">
+                Salvar Ordem
+            </button>
+
+            <a class="btn-voltar"
+               th:href="@{/ordens}">
+                Cancelar
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

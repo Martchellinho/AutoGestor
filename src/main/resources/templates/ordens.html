@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ordens de Serviço - AutoGestor</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+<div class="main">
+
+    <div class="header">
+
+        <h1>Ordens de Serviço</h1>
+
+        <p>
+            Gerencie os serviços em andamento da funilaria.
+        </p>
+
+    </div>
+
+    <a class="btn"
+       th:href="@{/ordens/novo}">
+        + Nova Ordem
+    </a>
+
+    <table>
+
+        <thead>
+
+        <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Veículo</th>
+            <th>Serviço</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Valor</th>
+            <th>Ações</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr th:each="ordem : ${ordens}">
+
+            <td th:text="${ordem.id}"></td>
+
+            <td th:text="${ordem.veiculo.cliente.nome}"></td>
+
+            <td th:text="${ordem.veiculo.modelo + ' - ' + ordem.veiculo.placa}"></td>
+
+            <td th:text="${ordem.servico.descricao}"></td>
+
+            <td th:text="${ordem.dataAbertura}"></td>
+
+            <td th:text="${ordem.status}"></td>
+
+            <td th:text="${'R$ ' + ordem.valorTotal}"></td>
+
+            <td>
+
+                <a class="btn-editar"
+                   th:href="@{/ordens/editar/{id}(id=${ordem.id})}">
+                    Editar
+                </a>
+
+                <form th:action="@{/ordens/excluir/{id}(id=${ordem.id})}"
+                      method="post"
+                      style="display: inline;"
+                      onsubmit="return confirm('Deseja realmente excluir esta ordem de serviço?')">
+
+                    <button class="btn-excluir"
+                            type="submit">
+                        Excluir
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

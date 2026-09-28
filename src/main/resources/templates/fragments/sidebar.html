@@ -1,0 +1,84 @@
+<div xmlns:th="http://www.thymeleaf.org"
+     class="sidebar"
+     th:fragment="sidebar">
+
+  <div class="logo">
+    Auto<span>Gestor</span>
+  </div>
+
+  <div class="sidebar-menu">
+
+    <a th:href="@{/}">
+      Dashboard
+    </a>
+
+    <a th:href="@{/clientes}">
+      Clientes
+    </a>
+
+    <a th:href="@{/veiculos}">
+      Veículos
+    </a>
+
+    <a th:href="@{/servicos}">
+      Serviços
+    </a>
+
+    <a th:href="@{/ordens}">
+      Ordens de Serviço
+    </a>
+
+    <a th:if="${usuarioLogado != null and usuarioLogado.perfil == 'ADMIN'}"
+       th:href="@{/usuarios}">
+      Usuários
+    </a>
+
+  </div>
+
+
+  <div class="sidebar-profile"
+       th:if="${usuarioLogado != null}">
+
+    <a th:href="@{/perfil}"
+       class="perfil-link">
+
+      <!-- FOTO DO USUÁRIO -->
+      <img th:if="${usuarioLogado.foto != null and !usuarioLogado.foto.isEmpty()}"
+           th:src="@{/uploads/perfil/{foto}(foto=${usuarioLogado.foto})}"
+           class="profile-avatar-img"
+           alt="Foto de perfil">
+
+      <!-- CASO NÃO TENHA FOTO -->
+      <div th:if="${usuarioLogado.foto == null or usuarioLogado.foto.isEmpty()}"
+           class="profile-avatar"
+           th:text="${#strings.substring(usuarioLogado.nome, 0, 1)}">
+        M
+      </div>
+
+      <div class="profile-info">
+
+        <strong th:text="${usuarioLogado.nome}">
+          Usuário
+        </strong>
+
+        <span th:text="${usuarioLogado.perfil == 'ADMIN' ? 'Administrador' : 'Funcionário'}">
+        Funcionário
+    </span>
+
+      </div>
+
+    </a>
+
+    <form th:action="@{/logout}"
+          method="post">
+
+      <button class="btn-sair"
+              type="submit">
+        Sair
+      </button>
+
+    </form>
+
+  </div>
+
+</div>

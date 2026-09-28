@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Serviços - AutoGestor</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+<div class="main">
+
+    <div class="header">
+
+        <h1>Serviços</h1>
+
+        <p>
+            Gerencie os serviços oferecidos pela funilaria.
+        </p>
+
+    </div>
+
+    <div class="erro"
+         th:if="${erro}"
+         th:text="${erro}">
+    </div>
+
+    <a class="btn"
+       th:href="@{/servicos/novo}">
+        + Novo Serviço
+    </a>
+
+    <table>
+
+        <thead>
+
+        <tr>
+            <th>ID</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>Ações</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr th:each="servico : ${servicos}">
+
+            <td th:text="${servico.id}"></td>
+
+            <td th:text="${servico.descricao}"></td>
+
+            <td th:text="${'R$ ' + servico.valor}"></td>
+
+            <td>
+
+                <a class="btn-editar"
+                   th:href="@{/servicos/editar/{id}(id=${servico.id})}">
+                    Editar
+                </a>
+
+                <form th:action="@{/servicos/excluir/{id}(id=${servico.id})}"
+                      method="post"
+                      style="display: inline;"
+                      onsubmit="return confirm('Deseja realmente excluir este serviço?')">
+
+                    <button class="btn-excluir"
+                            type="submit">
+                        Excluir
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

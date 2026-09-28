@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Meu Perfil - AutoGestor</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+
+<div class="main">
+
+    <div class="header">
+
+        <h1>Meu Perfil</h1>
+
+        <p>
+            Visualize e gerencie os dados da sua conta.
+        </p>
+
+    </div>
+
+
+    <div class="perfil-container">
+
+
+        <!-- FOTO DE PERFIL -->
+        <div class="perfil-foto">
+
+
+            <!-- FOTO DO USUÁRIO -->
+            <img th:if="${usuario.foto != null and !usuario.foto.isEmpty()}"
+                 th:src="@{/uploads/perfil/{foto}(foto=${usuario.foto})}"
+                 class="perfil-imagem"
+                 alt="Foto de perfil">
+
+
+            <!-- CASO NÃO TENHA FOTO -->
+            <div th:if="${usuario.foto == null or usuario.foto.isEmpty()}"
+                 class="perfil-avatar-grande"
+                 th:text="${#strings.substring(usuario.nome, 0, 1)}">
+
+                M
+
+            </div>
+
+
+            <!-- FORMULÁRIO DA FOTO -->
+            <form th:action="@{/perfil/foto}"
+                  method="post"
+                  enctype="multipart/form-data">
+
+                <label>
+                    Foto de perfil
+                </label>
+
+                <input type="file"
+                       name="foto"
+                       accept="image/*"
+                       required>
+
+                <br><br>
+
+                <button class="btn"
+                        type="submit">
+
+                    Alterar Foto
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- DADOS DO PERFIL -->
+        <div class="perfil-dados">
+
+
+            <label>
+                Nome
+            </label>
+
+            <input type="text"
+                   th:value="${usuario.nome}"
+                   disabled>
+
+
+            <label>
+                Usuário
+            </label>
+
+            <input type="text"
+                   th:value="${usuario.username}"
+                   disabled>
+
+
+            <label>
+                Tipo da conta
+            </label>
+
+            <input type="text"
+                   th:value="${usuario.perfil}"
+                   disabled>
+
+
+            <br><br>
+
+
+            <a class="btn"
+               th:href="@{/perfil/editar}">
+
+                Editar Perfil
+
+            </a>
+
+
+            <a class="btn-voltar"
+               th:href="@{/perfil/senha}">
+
+                Alterar Senha
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

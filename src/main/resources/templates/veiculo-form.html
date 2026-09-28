@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Veículo - AutoGestor</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+<div class="main">
+
+    <div class="header">
+
+        <h1 th:text="${veiculo.id == null ? 'Novo Veículo' : 'Editar Veículo'}">
+            Veículo
+        </h1>
+
+        <p>
+            Preencha os dados do veículo.
+        </p>
+
+    </div>
+
+    <div class="form-container">
+
+        <form th:action="@{/veiculos/salvar}"
+              th:object="${veiculo}"
+              method="post">
+
+            <input type="hidden"
+                   th:field="*{id}">
+
+            <label>Placa</label>
+
+            <input type="text"
+                   th:field="*{placa}"
+                   placeholder="ABC1D23"
+                   required>
+
+            <label>Modelo</label>
+
+            <input type="text"
+                   th:field="*{modelo}"
+                   placeholder="Ex: Honda Civic"
+                   required>
+
+            <label>Cor</label>
+
+            <input type="text"
+                   th:field="*{cor}"
+                   placeholder="Ex: Preto">
+
+            <label>Cliente</label>
+
+            <select name="clienteId"
+                    required>
+
+                <option value="">
+                    Selecione o proprietário
+                </option>
+
+                <option
+                        th:each="cliente : ${clientes}"
+                        th:value="${cliente.id}"
+                        th:text="${cliente.nome}"
+                        th:selected="${veiculo.cliente != null
+                        and veiculo.cliente.id == cliente.id}">
+                </option>
+
+            </select>
+
+            <br><br>
+
+            <button class="btn"
+                    type="submit">
+                Salvar Veículo
+            </button>
+
+            <a class="btn-voltar"
+               th:href="@{/veiculos}">
+                Cancelar
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

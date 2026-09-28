@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Login - AutoGestor</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+
+</head>
+
+<body class="login-body">
+
+<div class="login-container">
+
+    <div class="login-logo">
+        Auto<span>Gestor</span>
+    </div>
+
+    <h2>Bem-vindo</h2>
+
+    <p>
+        Entre para acessar o sistema.
+    </p>
+
+    <div class="erro"
+         th:if="${param.error}">
+        Usuário ou senha inválidos.
+    </div>
+
+    <div class="sucesso"
+         th:if="${param.logout}">
+        Você saiu do sistema.
+    </div>
+
+    <form th:action="@{/login}"
+          method="post">
+
+        <label>Usuário</label>
+
+        <input
+                type="text"
+                name="username"
+                placeholder="Digite seu usuário"
+                required>
+
+        <label>Senha</label>
+
+        <input
+                type="password"
+                name="password"
+                placeholder="Digite sua senha"
+                required>
+
+        <button
+                class="btn login-btn"
+                type="submit">
+
+            Entrar
+
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

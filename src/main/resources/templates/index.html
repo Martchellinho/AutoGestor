@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>AutoGestor</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+
+<div class="main">
+
+    <div class="header">
+
+        <h1>Dashboard</h1>
+
+        <p>
+            Sistema de Gestão para Funilaria
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <!-- CLIENTES -->
+        <div class="card">
+
+            <h3>CLIENTES</h3>
+
+            <p th:text="${totalClientes}">
+                0
+            </p>
+
+            <span>clientes cadastrados</span>
+
+            <br><br>
+
+            <a class="btn"
+               th:href="@{/clientes}">
+                Acessar
+            </a>
+
+        </div>
+
+
+        <!-- VEÍCULOS -->
+        <div class="card">
+
+            <h3>VEÍCULOS</h3>
+
+            <p th:text="${totalVeiculos}">
+                0
+            </p>
+
+            <span>veículos cadastrados</span>
+
+            <br><br>
+
+            <a class="btn"
+               th:href="@{/veiculos}">
+                Acessar
+            </a>
+
+        </div>
+
+
+        <!-- SERVIÇOS -->
+        <div class="card">
+
+            <h3>SERVIÇOS</h3>
+
+            <p th:text="${totalServicos}">
+                0
+            </p>
+
+            <span>serviços cadastrados</span>
+
+            <br><br>
+
+            <a class="btn"
+               th:href="@{/servicos}">
+                Acessar
+            </a>
+
+        </div>
+
+
+        <!-- ORDENS -->
+        <div class="card">
+
+            <h3>ORDENS DE SERVIÇO</h3>
+
+            <p th:text="${totalOrdens}">
+                0
+            </p>
+
+            <span>ordens cadastradas</span>
+
+            <br><br>
+
+            <a class="btn"
+               th:href="@{/ordens}">
+                Acessar
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
