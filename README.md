@@ -216,42 +216,42 @@ O limite configurado para upload é de **10 MB**.
 ## Login
 Tela de autenticação do AutoGestor.
 
-![Login](docs/images/login.png)
+![Login](docs/images/login.png.png)
 
 ## Dashboard
 Visão geral com os totais de clientes, veículos, serviços e ordens de serviço.
 
-![Dashboard](docs/images/dashboard.png)
+![Dashboard](docs/images/dashboard.png.png)
 
 ## Clientes
 Tela de gerenciamento dos clientes cadastrados.
 
-![Clientes](docs/images/clientes.png)
+![Clientes](docs/images/clientes.png.png)
 
 ## Veículos
 Tela de gerenciamento dos veículos vinculados aos clientes.
 
-![Veículos](docs/images/veiculos.png)
+![Veículos](docs/images/veiculos.png.png)
 
 ## Serviços
 Tela de cadastro e gerenciamento dos serviços oferecidos pela funilaria.
 
-![Serviços](docs/images/servicos.png)
+![Serviços](docs/images/servicos.png.png)
 
 ## Ordens de Serviço
 Gerenciamento das ordens, relacionando cliente, veículo, serviço, data, status e valor.
 
-![Ordens de Serviço](docs/images/ordens.png)
+![Ordens de Serviço](docs/images/ordens.png.png)
 
 ## Meu Perfil
 Área para visualizar dados, alterar informações, senha e foto de perfil.
 
-![Meu Perfil](docs/images/perfil.png)
+![Meu Perfil](docs/images/perfil.png.png)
 
 ## Usuários
 Área administrativa para gerenciamento das contas de acesso, incluindo perfis de Administrador e Funcionário.
 
-![Usuários](docs/images/usuarios.png)
+![Usuários](docs/images/usuarios.png.png)
 
 ## Possíveis melhorias futuras
 
