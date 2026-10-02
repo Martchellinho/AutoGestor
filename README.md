@@ -63,34 +63,26 @@ src/main/resources
 ## Principais módulos
 
 ### Clientes
-
 Permite cadastrar e gerenciar os clientes da oficina.
 
 ### Veículos
-
 Cada veículo é associado a um cliente cadastrado.
 
 ### Serviços
-
 Permite cadastrar os serviços oferecidos e seus respectivos valores.
 
 ### Ordens de Serviço
-
 As ordens relacionam veículo, cliente e serviço, além de armazenar data, status e valor total.
 
 ### Usuários
-
 Administradores podem cadastrar e gerenciar contas de acesso ao sistema.
 
 Os usuários podem possuir os perfis:
-
 - `ADMIN` — exibido no sistema como **Administrador**
 - `USUARIO` — exibido no sistema como **Funcionário**
 
 ### Meu Perfil
-
 Cada usuário pode:
-
 - visualizar seus dados;
 - alterar nome e username;
 - alterar sua senha;
@@ -116,7 +108,7 @@ CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
 ```
 
-A aplicação utiliza o seguinte endereço:
+A aplicação utiliza:
 
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/autogestor
@@ -130,8 +122,6 @@ O Hibernate está configurado com:
 spring.jpa.hibernate.ddl-auto=update
 ```
 
-Por isso, as tabelas são criadas/atualizadas automaticamente a partir das entidades da aplicação.
-
 ## Variáveis de ambiente
 
 Antes de executar o projeto, configure:
@@ -140,7 +130,7 @@ Antes de executar o projeto, configure:
 DB_PASSWORD=sua_senha_do_mysql
 ```
 
-Em uma instalação nova, sem nenhum usuário cadastrado, também configure um administrador inicial:
+Em uma instalação nova, sem nenhum usuário cadastrado, também configure:
 
 ```text
 ADMIN_NAME=Administrador
@@ -148,17 +138,12 @@ ADMIN_USERNAME=admin
 ADMIN_PASSWORD=sua_senha_inicial
 ```
 
-As variáveis `ADMIN_USERNAME` e `ADMIN_PASSWORD` são utilizadas somente quando a tabela de usuários ainda está vazia.
-
 ## Como executar
 
 ### Pré-requisitos
-
-Tenha instalado:
-
 - Java 17
 - MySQL
-- Maven, ou utilize o Maven Wrapper incluído no projeto
+- Maven, ou o Maven Wrapper incluído no projeto
 - IntelliJ IDEA, Eclipse ou outra IDE Java
 
 ### 1. Clone o repositório
@@ -175,8 +160,6 @@ cd AutoGestor
 
 ### 3. Crie o banco
 
-No MySQL:
-
 ```sql
 CREATE DATABASE autogestor
 CHARACTER SET utf8mb4
@@ -184,8 +167,6 @@ COLLATE utf8mb4_unicode_ci;
 ```
 
 ### 4. Configure as variáveis de ambiente
-
-Configure pelo sistema operacional ou pela configuração de execução da IDE:
 
 ```text
 DB_PASSWORD=sua_senha_do_mysql
@@ -210,15 +191,9 @@ No Linux/macOS:
 ./mvnw spring-boot:run
 ```
 
-Ou execute diretamente a classe:
-
-```text
-AutoGestorApplication.java
-```
+Ou execute diretamente `AutoGestorApplication.java`.
 
 ### 6. Acesse
-
-Abra no navegador:
 
 ```text
 http://localhost:8080
@@ -236,30 +211,47 @@ A pasta `uploads/` está ignorada pelo Git para evitar publicar imagens pessoais
 
 O limite configurado para upload é de **10 MB**.
 
-## Screenshots
+# Screenshots
 
-Adicione os prints do projeto em uma pasta como:
+## Login
+Tela de autenticação do AutoGestor.
 
-```text
-docs/images/
-```
-
-Sugestão de imagens:
-
-- `login.png`
-- `dashboard.png`
-- `clientes.png`
-- `ordens.png`
-- `perfil.png`
-- `usuarios.png`
-
-Depois você pode adicionar ao README:
-
-```markdown
 ![Login](docs/images/login.png)
+
+## Dashboard
+Visão geral com os totais de clientes, veículos, serviços e ordens de serviço.
+
 ![Dashboard](docs/images/dashboard.png)
+
+## Clientes
+Tela de gerenciamento dos clientes cadastrados.
+
+![Clientes](docs/images/clientes.png)
+
+## Veículos
+Tela de gerenciamento dos veículos vinculados aos clientes.
+
+![Veículos](docs/images/veiculos.png)
+
+## Serviços
+Tela de cadastro e gerenciamento dos serviços oferecidos pela funilaria.
+
+![Serviços](docs/images/servicos.png)
+
+## Ordens de Serviço
+Gerenciamento das ordens, relacionando cliente, veículo, serviço, data, status e valor.
+
 ![Ordens de Serviço](docs/images/ordens.png)
-```
+
+## Meu Perfil
+Área para visualizar dados, alterar informações, senha e foto de perfil.
+
+![Meu Perfil](docs/images/perfil.png)
+
+## Usuários
+Área administrativa para gerenciamento das contas de acesso, incluindo perfis de Administrador e Funcionário.
+
+![Usuários](docs/images/usuarios.png)
 
 ## Possíveis melhorias futuras
 
